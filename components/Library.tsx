@@ -3,37 +3,37 @@
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 
-// import { Song } from "@/types";
-// import useUploadModal from "@/hooks/useUploadModal";
-// import { useUser } from "@/hooks/useUser";
-// import useAuthModal from "@/hooks/useAuthModal";
+import { Song } from "@/types";
+import useUploadModal from "@/hooks/useUploadModal";
+import { useUser } from "@/hooks/useUser";
+import useAuthModal from "@/hooks/useAuthModal";
 // import useSubscribeModal from "@/hooks/useSubscribeModal";
-// import useOnPlay from "@/hooks/useOnPlay";
+import useOnPlay from "@/hooks/useOnPlay";
 
-// import MediaItem from "./MediaItem";
+import MediaItem from "./MediaItem";
 
 interface LibraryProps {
-  // songs: Song[];
+  songs: Song[];
 }
 
 const Library: React.FC<LibraryProps> = ({
   songs
 }) => {
-  //   const { user, subscription } = useUser();
-  //   const uploadModal = useUploadModal();
-  //   const authModal = useAuthModal();
+    const { user } = useUser();
+    const uploadModal = useUploadModal();
+    const authModal = useAuthModal();
   //   const subscribeModal = useSubscribeModal();
-  //   const onPlay = useOnPlay(songs);
+    const onPlay = useOnPlay(songs);
 
-  //   const onClick = () => {
-  //     if (!user) {
-  //       return authModal.onOpen();
-  //     }
-  //     if (!subscription) {
-  //       return subscribeModal.onOpen();
-  //     }
-  //     return uploadModal.onOpen();
-  //   }
+    const onClick = () => {
+      if (!user) {
+        return authModal.onOpen();
+      }
+      // if (!subscription) {
+      //   return subscribeModal.onOpen();
+      // }
+      return uploadModal.onOpen();
+    }
 
   return ( 
     <div className="flex flex-col">
@@ -45,7 +45,7 @@ const Library: React.FC<LibraryProps> = ({
           </p>
         </div>
         <AiOutlinePlus 
-          // onClick={onClick} 
+          onClick={onClick} 
           size={20} 
           className="
             text-neutral-400 
@@ -56,7 +56,13 @@ const Library: React.FC<LibraryProps> = ({
         />
       </div>
       <div className="flex flex-col gap-y-2 mt-4 px-3">
-        List of Songs
+      {songs.map((item) => (
+          <MediaItem 
+            onClick={(id: string) => onPlay(id)} 
+            key={item.id} 
+            data={item}
+          />
+        ))}
       </div>
     </div>
    );
