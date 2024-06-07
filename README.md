@@ -5,7 +5,9 @@
 - User-specific song upload functionality
 - User has full control over their uploaded songs
 
-These are some screenshots of the project running on the localhost
+##These are some screenshots of the project running on the localhost
+
+
 <img width="480" alt="Screenshot 2024-05-29 at 12 01 35 AM" src="https://github.com/nilaysrivastava/voib/assets/139038819/c4afe6f4-bbce-41b9-bbd9-f7ee70879ecf">
 <img width="480" alt="Screenshot 2024-05-29 at 12 01 43 AM" src="https://github.com/nilaysrivastava/voib/assets/139038819/6545baef-9563-490a-9d5d-b018221bc62f">
 <img width="480" alt="Screenshot 2024-05-29 at 12 01 49 AM" src="https://github.com/nilaysrivastava/voib/assets/139038819/7b40f5eb-4c45-4e4e-b3c5-2c3485734501">
