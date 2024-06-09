@@ -1,9 +1,28 @@
-- Online music player app
-- Frontend designed using ReactJs and TailwindCSS
-- Supabase-based authentication and database
-- PostgreSQL used for database
-- User-specific song upload functionality
-- User has full control over their uploaded songs
+# Voib-A Music Player Website
+
+Welcome to the Voib-A Music Player Website project! This online music player application offers a seamless experience for users to enjoy their favorite tunes while providing convenient features for managing their music library.
+
+## Features
+
+- **Online Music Player**: Enjoy your favorite music anytime, anywhere, with just an internet connection.
+- **User-Friendly Interface**: The frontend is designed using React.js and TailwindCSS to ensure a smooth and pleasant user experience.
+- **Secure Authentication**: Utilizes Supabase for robust authentication, ensuring your account is always safe and secure.
+- **Reliable Database Management**: PostgreSQL is employed for efficient and reliable database management, ensuring seamless performance.
+- **User-Specific Song Upload**: Users can upload their own songs and have full control over their uploaded songs.
+- **Premium Subscription**: Stripe payment gateway is integrated for premium subscription, unlocking extra features for users.
+
+## Technologies Used
+
+- **Next.js**: Used as the framework for building the frontend of the web application, providing server-side rendering and routing capabilities.
+- **TypeScript**: Employed for adding static typing to JavaScript, enhancing code quality and developer productivity.
+- **Bootstrap**: Utilized for responsive design and layout components, ensuring compatibility across different devices and screen sizes.
+- **Supabase**: Integrated for authentication and database management, ensuring secure user authentication and efficient data storage.
+- **Node.js**: Used for building the backend server, enabling server-side logic and handling of HTTP requests.
+- **Express.js**: Employed as the web application framework for Node.js, facilitating the creation of RESTful APIs and middleware.
+- **React.js**: Utilized for building dynamic and interactive user interfaces, enhancing the frontend experience of the music player website.
+- **TailwindCSS**: Used for utility-first CSS framework, enabling rapid styling and customization of UI components.
+- **PostgreSQL**: Employed as the relational database management system, ensuring reliable data storage and retrieval for user-specific song uploads and other data.
+- **Stripe**: Integrated as the payment gateway for handling premium subscription transactions, allowing users to access extra features with ease.
 
 ##These are some screenshots of the project running on the localhost
 
@@ -26,4 +45,18 @@
 <img width="360" alt="Screenshot 2024-05-29 at 12 06 32 AM" src="https://github.com/nilaysrivastava/voib/assets/139038819/1e815363-e0af-4675-bb44-d65c1faf0e7d">
 <img width="360" alt="Screenshot 2024-05-29 at 12 06 39 AM" src="https://github.com/nilaysrivastava/voib/assets/139038819/ebf161c1-7790-4bda-b7e8-0f77464460e7">
 
+## Getting Started
+
+To get started with the Voib-A Music Player Website, follow these steps:
+
+1. Clone this repository to your local machine.
+2. Navigate to the project directory.
+3. Install dependencies by running `npm install`.
+4. Configure Supabase credentials in `.env` file.
+5. Start the development server by running `npm run dev`.
+6. Access the application in your web browser at `http://localhost:3000`.
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
