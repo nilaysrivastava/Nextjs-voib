@@ -22,44 +22,47 @@ const Sidebar = ({ children, songs }: SidebarProps) => {
   const pathname = usePathname();
   const player = usePlayer();
 
-  const routes = useMemo(() => [
-    {
-      icon: HiHome,
-      label: 'Home',
-      active: pathname !== '/search',
-      href: '/'
-    },
-    {
-      icon: BiSearch,
-      label: 'Search',
-      href: '/search',
-      active: pathname === '/search'
-    },
-  ], [pathname]);
+  const routes = useMemo(
+    () => [
+      {
+        icon: HiHome,
+        label: "Home",
+        active: pathname !== "/search",
+        href: "/",
+      },
+      {
+        icon: BiSearch,
+        label: "Search",
+        href: "/search",
+        active: pathname === "/search",
+      },
+    ],
+    [pathname]
+  );
 
   return (
-<div 
-      className={twMerge(`
+    <div
+      className={twMerge(
+        `
         flex 
         h-full
         `,
-        player.activeId && 'h-[calc(100%-80px)]'
+        player.activeId && "h-[calc(100%-80px)]"
       )}
     >
-      <div 
+      <div
         className="
-          hidden 
-          md:flex 
-          flex-col 
-          gap-y-2 
-          bg-black 
-          h-full 
-          w-[300px] 
-          p-2
-        "
+    flex 
+    flex-col 
+    gap-y-2 
+    bg-black 
+    h-full 
+    w-[300px] 
+    p-2
+  "
       >
         <Box>
-        <div className="flex flex-col gap-y-4 px-5 py-4">
+          <div className="flex flex-col gap-y-4 px-5 py-4">
             {routes.map((item) => (
               <SidebarItem key={item.label} {...item} />
             ))}
@@ -69,11 +72,9 @@ const Sidebar = ({ children, songs }: SidebarProps) => {
           <Library songs={songs} />
         </Box>
       </div>
-      <main className="h-full w-full flex py-2">
-        {children}
-      </main>
+      <main className="h-full w-full flex py-2">{children}</main>
     </div>
   );
-}
- 
+};
+
 export default Sidebar;
