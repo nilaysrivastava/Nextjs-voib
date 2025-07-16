@@ -45,16 +45,48 @@ Welcome to the Voib-A Music Player Website project! This online music player app
 <img width="360" alt="Screenshot 2024-05-29 at 12 06 32 AM" src="https://github.com/nilaysrivastava/voib/assets/139038819/1e815363-e0af-4675-bb44-d65c1faf0e7d">
 <img width="360" alt="Screenshot 2024-05-29 at 12 06 39 AM" src="https://github.com/nilaysrivastava/voib/assets/139038819/ebf161c1-7790-4bda-b7e8-0f77464460e7">
 
-## Getting Started
+## 🚀 Getting Started
 
-To get started with the Voib-A Music Player Website, follow these steps:
+Follow these steps to run the **Voib - A Music Player Website** on your local machine:
 
-1. Clone this repository to your local machine.
-2. Navigate to the project directory.
-3. Install dependencies by running ```npm install```.
-4. Configure Supabase credentials in `.env` file.
-5. Start the development server by running `npm run dev`.
-6. Access the application in your web browser at `http://localhost:3000`.
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/nilaysrivastava/voib.git
+cd voib
+```
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a .env file in the root directory and add your Supabase credentials:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+Replace your_supabase_url and your_supabase_anon_key with actual values from your Supabase project settings.
+
+### 4. Run the Development Server
+
+```bash
+npm run dev
+```
+
+### 5. Open the App in Your Browser
+
+Visit 
+```bash
+http://localhost:3000
+```
+in your browser to view the app.
+
+
 
 ## Contributing
 
