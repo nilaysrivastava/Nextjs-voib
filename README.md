@@ -51,7 +51,7 @@ To get started with the Voib-A Music Player Website, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Navigate to the project directory.
-3. Install dependencies by running `npm install`.
+3. Install dependencies by running ```npm install```.
 4. Configure Supabase credentials in `.env` file.
 5. Start the development server by running `npm run dev`.
 6. Access the application in your web browser at `http://localhost:3000`.
