@@ -6,7 +6,7 @@ import Button from "./Button";
 import { useUser } from "@/hooks/useUser";
 import { toast } from "react-hot-toast";
 import { postData } from "@/libs/helpers";
-import { getStripe } from "../libs/stripeClient";
+
 import useSubscribeModal from "@/hooks/useSubscribeModal";
 
 interface SubscribeModalProps {
@@ -44,12 +44,11 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
       return toast("Already subscribed");
     }
     try {
-      const { sessionId } = await postData({
+      const { url } = await postData({
         url: "/api/create-checkout-session",
         data: { price },
       });
-      const stripe = await getStripe();
-      stripe?.redirectToCheckout({ sessionId });
+      window.location.assign(url);
     } catch (error) {
       toast.error((error as Error)?.message);
     } finally {
@@ -92,8 +91,8 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
 
   return (
     <Modal
-      title="Only for premium users"
-      description="Listen to music with Voib Premium"
+      title="Voib Premium — Stripe test mode"
+      description="Test subscriptions only. Use Stripe test card 4242 4242 4242 4242, any future expiry and any CVC. No real charges."
       isOpen={subscribeModal.isOpen}
       onChange={onChange}
     >

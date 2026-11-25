@@ -27,7 +27,7 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
     if (!user) {
       return authModal.onOpen();
     }
-    if (!subscription) {
+    if (!subscription && !user.app_metadata.demo && !user.app_metadata.groups?.includes("admin")) {
       return subscribeModal.onOpen();
     }
     return uploadModal.onOpen();

@@ -7,11 +7,11 @@ import SearchInput from '../../components/SearchInput';
 export const revalidate = 0;
 
 interface SearchProps {
-  searchParams: { title: string }
+  searchParams: Promise<{ title?: string }>
 };
 
 const Search = async ({ searchParams }: SearchProps) => {
-  const songs = await getSongsByTitle(searchParams.title);
+  const songs = await getSongsByTitle((await searchParams).title || "");
 
   return (
     <div 

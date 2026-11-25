@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { Song } from "@/types";
-import { useSessionContext } from '@supabase/auth-helpers-react';
+import { useSessionContext } from '@/providers/SupabaseProvider';
 import { toast } from 'react-hot-toast';
 
 
@@ -21,7 +21,7 @@ const useSongById = (id?: string) => {
       const { data, error } = await supabaseClient
         .from('songs')
         .select('*')
-        .eq('id', id)
+        .eq('id', Number(id))
         .single();
 
       if (error) {
@@ -29,7 +29,7 @@ const useSongById = (id?: string) => {
         return toast.error(error.message);
       }
       
-      setSong(data as Song);
+      setSong({...data, id: String(data.id)} as Song);
       setIsLoading(false);
     }
 

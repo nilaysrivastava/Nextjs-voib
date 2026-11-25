@@ -34,11 +34,12 @@ const AccountContent = () => {
     setLoading(false);
   };
 
+  if(user?.app_metadata.demo)return <div className="mb-7 px-6 text-white"><p className="text-xl font-bold">Demo Premium included</p><p className="mt-2 text-neutral-300">Play music, save likes and upload sample tracks. This shared demo account has no billing account. Sign up with your own email to try Stripe test checkout.</p></div>;
   return (
     <div className="mb-7 px-6">
       {!subscription && (
         <div className="flex flex-col gap-y-4">
-          <p>No active plan</p>
+          <p>No active plan. Stripe is in test mode; no real money is charged.</p>
           <Button onClick={subscribeModal.onOpen} className="w-[300px]">
             Subscribe
           </Button>

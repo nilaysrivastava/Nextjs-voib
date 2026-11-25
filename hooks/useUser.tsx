@@ -3,7 +3,7 @@ import {
   useUser as useSupaUser,
   useSessionContext,
   User
-} from '@supabase/auth-helpers-react';
+} from '@/providers/SupabaseProvider';
 
 import { UserDetails, Subscription } from '@/types';
 
@@ -35,36 +35,22 @@ export const MyUserContextProvider = (props: Props) => {
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
 
-  const getUserDetails = () => supabase.from('users').select('*').single();
-  const getSubscription = () =>
-    supabase
-      .from('subscriptions')
-      .select('*, prices(*, products(*))')
-      .in('status', ['trialing', 'active'])
-      .single();
+
+
 
   useEffect(() => {
-    if (user && !isLoadingData && !userDetails && !subscription) {
-      setIsloadingData(true);
-      Promise.allSettled([getUserDetails(), getSubscription()]).then(
-        (results) => {
-          const userDetailsPromise = results[0];
-          const subscriptionPromise = results[1];
-
-          if (userDetailsPromise.status === 'fulfilled')
-            setUserDetails(userDetailsPromise.value.data as UserDetails);
-
-          if (subscriptionPromise.status === 'fulfilled')
-            setSubscription(subscriptionPromise.value.data as Subscription);
-
-          setIsloadingData(false);
-        }
-      );
-    } else if (!user && !isLoadingUser && !isLoadingData) {
-      setUserDetails(null);
-      setSubscription(null);
-    }
-  }, [user, isLoadingUser]);
+    let active=true;
+    setUserDetails(null);setSubscription(null);
+    if(!user){setIsloadingData(false);return;}
+    setIsloadingData(true);
+    Promise.allSettled([supabase.from('users').select('*').eq('id',user.id).maybeSingle(),supabase.from('subscriptions').select('*, prices(*, products(*))').eq('user_id',user.id).in('status',['trialing','active']).gt('current_period_end',new Date().toISOString()).maybeSingle()]).then(results=>{
+      if(!active)return;
+      if(results[0].status==='fulfilled')setUserDetails(results[0].value.data as UserDetails|null);
+      if(results[1].status==='fulfilled')setSubscription(results[1].value.data as Subscription|null);
+      setIsloadingData(false);
+    });
+    return ()=>{active=false;};
+  },[user,supabase]);
 
   const value = {
     accessToken,

@@ -9,6 +9,7 @@ import ModalProvider from "@/providers/ModalProvider";
 import SupabaseProvider from "@/providers/SupabaseProvider";
 
 import "./globals.css";
+import DemoAccess from "@/components/DemoLogins";
 import Player from "@/components/Player";
 
 const font = Figtree({ subsets: ["latin"] });
@@ -30,12 +31,15 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={`${font.className} flex h-dvh flex-col overflow-hidden`}>
         <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider products={products} />
+            <DemoAccess />
+            <div className="min-h-0 flex-1">
             <Sidebar songs={userSongs}>{children}</Sidebar>
+            </div>
             <Player />
           </UserProvider>
         </SupabaseProvider>

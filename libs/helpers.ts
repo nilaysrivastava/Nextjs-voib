@@ -19,7 +19,7 @@ export const postData = async ({
   url: string;
   data?: { price: Price };
 }) => {
-  console.log('posting,', url, data);
+
 
   const res: Response = await fetch(url, {
     method: 'POST',
@@ -29,16 +29,15 @@ export const postData = async ({
   });
 
   if (!res.ok) {
-    console.log('Error in postData', { url, data, res });
-
-    throw Error(res.statusText);
+    const payload=await res.json().catch(()=>({}));
+    throw Error(payload.error || res.statusText);
   }
 
   return res.json();
 };
 
 export const toDateTime = (secs: number) => {
-  var t = new Date('1970-01-01T00:30:00Z'); // Unix epoch start.
+  var t = new Date('1970-01-01T00:00:00Z'); // Unix epoch start.
   t.setSeconds(secs);
   return t;
 };

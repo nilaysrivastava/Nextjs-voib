@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { useSessionContext } from "@supabase/auth-helpers-react";
+import { useSessionContext } from "@/providers/SupabaseProvider";
 
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
@@ -26,6 +26,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
   useEffect(() => {
+    setIsLiked(false);
     if (!user?.id) {
       return;
     }
@@ -35,8 +36,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         .from('liked_songs')
         .select('*')
         .eq('user_id', user.id)
-        .eq('song_id', songId)
-        .single();
+        .eq('song_id', Number(songId))
+        .maybeSingle();
 
       if (!error && data) {
         setIsLiked(true);
@@ -58,7 +59,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         .from('liked_songs')
         .delete()
         .eq('user_id', user.id)
-        .eq('song_id', songId)
+        .eq('song_id', Number(songId))
 
       if (error) {
         toast.error(error.message);
@@ -69,7 +70,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
       const { error } = await supabaseClient
         .from('liked_songs')
         .insert({
-          song_id: songId,
+          song_id: Number(songId),
           user_id: user.id
         });
 
@@ -85,7 +86,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   }
 
   return (
-    <button 
+    <button aria-label={isLiked ? "Unlike song" : "Like song"}
       className="
         cursor-pointer 
         hover:opacity-75 

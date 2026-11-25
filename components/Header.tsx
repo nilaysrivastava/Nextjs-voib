@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabaseClient } from "@/providers/SupabaseProvider";
 import { toast } from "react-hot-toast";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
@@ -122,6 +122,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         <div className="flex justify-between items-center gap-x-4">
           {user ? (
             <div className="flex gap-x-4 items-center">
+              {(user.app_metadata.groups?.includes("admin") || user.app_metadata.groups?.includes("demo_admin")) && <Button className="bg-white px-4 py-2" onClick={()=>router.push("/admin")}>Admin</Button>}
               <Button onClick={handleLogout} className="bg-white px-6 py-2">
                 Logout
               </Button>

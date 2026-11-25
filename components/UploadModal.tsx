@@ -1,178 +1,27 @@
 "use client";
-
-import uniqid from "uniqid";
-import React, { useState } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-
+import {useState} from 'react';
+import {useSupabaseClient} from '@/providers/SupabaseProvider';
+import {useForm,type FieldValues,type SubmitHandler} from 'react-hook-form';
+import {toast} from 'react-hot-toast';
+import {useRouter} from 'next/navigation';
 import useUploadModal from '@/hooks/useUploadModal';
-import { useUser } from "@/hooks/useUser";
-
-import Modal from './Modal';
-import Input from './Input';
-import Button from './Button';
-
-const UploadModal = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const uploadModal = useUploadModal();
-  const supabaseClient = useSupabaseClient();
-  const { user } = useUser();
-  const router = useRouter();
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm<FieldValues>({
-    defaultValues: {
-      author: '',
-      title: '',
-      song: null,
-      image: null,
-    }
-  });
-
-  const onChange = (open: boolean) => {
-    if (!open) {
-      reset();
-      uploadModal.onClose();
-    }
-  }
-
-  const onSubmit: SubmitHandler<FieldValues> = async (values) => {
-    try {
-      setIsLoading(true);
-      
-      const imageFile = values.image?.[0];
-      const songFile = values.song?.[0];
-
-      if (!imageFile || !songFile || !user) {
-        toast.error('Missing fields')
-        return;
-      }
-
-      const uniqueID = uniqid();
-
-      // Upload song
-      const { 
-        data: songData, 
-        error: songError 
-      } = await supabaseClient
-        .storage
-        .from('songs')
-        .upload(`song-${values.title}-${uniqueID}`, songFile, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (songError) {
-        setIsLoading(false);
-        return toast.error('Failed song upload');
-      }
-
-      // Upload image
-      const { 
-        data: imageData, 
-        error: imageError
-      } = await supabaseClient
-        .storage
-        .from('images')
-        .upload(`image-${values.title}-${uniqueID}`, imageFile, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (imageError) {
-        setIsLoading(false);
-        return toast.error('Failed image upload');
-      }
-
-      
-      // Create record 
-      const { error: supabaseError } = await supabaseClient
-        .from('songs')
-        .insert({
-          user_id: user.id,
-          title: values.title,
-          author: values.author,
-          image_path: imageData.path,
-          song_path: songData.path
-        });
-
-      if (supabaseError) {
-        return toast.error(supabaseError.message);
-      }
-      
-      router.refresh();
-      setIsLoading(false);
-      toast.success('Song created!');
-      reset();
-      uploadModal.onClose();
-    } catch (error) {
-      toast.error('Something went wrong');
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  return (
-    <Modal
-      title="Add a song"
-      description="Upload an mp3 file"
-      isOpen={uploadModal.isOpen}
-      onChange={onChange}
-    >
-      <form 
-        onSubmit={handleSubmit(onSubmit)} 
-        className="flex flex-col gap-y-4"
-      >
-        <Input
-          id="title"
-          disabled={isLoading}
-          {...register('title', { required: true })}
-          placeholder="Song title"
-        />
-        <Input
-          id="author"
-          disabled={isLoading}
-          {...register('author', { required: true })}
-          placeholder="Song author"
-        />
-        <div>
-          <div className="pb-1">
-            Select a song file
-          </div>
-          <Input
-            placeholder="test" 
-            disabled={isLoading}
-            type="file"
-            accept=".mp3"
-            id="song"
-            {...register('song', { required: true })}
-          />
-        </div>
-        <div>
-          <div className="pb-1">
-            Select an image
-          </div>
-          <Input
-            placeholder="test" 
-            disabled={isLoading}
-            type="file"
-            accept="image/*"
-            id="image"
-            {...register('image', { required: true })}
-          />
-        </div>
-        <Button disabled={isLoading} type="submit" style={{backgroundColor:"#cc1964"}}>
-          Create
-        </Button>
-      </form>
-    </Modal>
-  );
+import {useUser} from '@/hooks/useUser';
+import Modal from './Modal';import Input from './Input';import Button from './Button';
+export default function UploadModal(){
+ const [busy,setBusy]=useState(false);const modal=useUploadModal(),client=useSupabaseClient(),{user}=useUser(),router=useRouter();
+ const {register,handleSubmit,reset}=useForm<FieldValues>();
+ const submit:SubmitHandler<FieldValues>=async(values)=>{
+  if(!user)return;const song=values.song?.[0] as File|undefined,image=values.image?.[0] as File|undefined;
+  if(!song||!image)return toast.error('Select an audio file and cover image.');
+  if(song.size>10*1024*1024||image.size>2*1024*1024)return toast.error('Audio must be under 10 MB and cover art under 2 MB.');
+  if(!['audio/mpeg','audio/mp3','audio/wav','audio/x-wav','audio/ogg'].includes(song.type)||!['image/jpeg','image/png','image/webp'].includes(image.type))return toast.error('Use MP3/WAV/OGG audio and a PNG/JPEG/WebP cover.');
+  setBusy(true);const id=crypto.randomUUID(),songPath=`${user.id}/${id}.${song.name.split('.').pop()}`,imagePath=`${user.id}/${id}.${image.name.split('.').pop()}`;let audioUploaded=false,coverUploaded=false;
+  try{
+   const audio=await client.storage.from('songs').upload(songPath,song,{contentType:song.type});if(audio.error)throw audio.error;audioUploaded=true;
+   const cover=await client.storage.from('images').upload(imagePath,image,{contentType:image.type});if(cover.error)throw cover.error;coverUploaded=true;
+   const result=await client.from('songs').insert({user_id:user.id,title:String(values.title).trim(),author:String(values.author).trim(),song_path:songPath,image_path:imagePath});if(result.error)throw result.error;
+   toast.success('Song added to your library');reset();modal.onClose();router.refresh();
+  }catch(error){if(audioUploaded)await client.storage.from('songs').remove([songPath]);if(coverUploaded)await client.storage.from('images').remove([imagePath]);toast.error(error instanceof Error?error.message:'Upload failed. Please try again.');}finally{setBusy(false);}
+ };
+ return <Modal title="Add a song" description="Upload music you own or have permission to share. Audio: 10 MB maximum. Cover art: 2 MB maximum." isOpen={modal.isOpen} onChange={open=>{if(!open){modal.onClose();reset();}}}><form onSubmit={handleSubmit(submit)} className="flex flex-col gap-4"><Input aria-label="Song title" placeholder="Song title" disabled={busy} maxLength={150} {...register('title',{required:true})}/><Input aria-label="Song author" placeholder="Song author" disabled={busy} maxLength={100} {...register('author',{required:true})}/><label>Audio file<Input aria-label="Audio file" type="file" accept="audio/mpeg,audio/wav,audio/ogg,.mp3,.wav,.ogg" disabled={busy} {...register('song',{required:true})}/></label><label>Cover image<Input aria-label="Cover image" type="file" accept="image/jpeg,image/png,image/webp" disabled={busy} {...register('image',{required:true})}/></label><Button disabled={busy} type="submit">{busy?'Uploading…':'Create song'}</Button></form></Modal>;
 }
-
-export default UploadModal;
