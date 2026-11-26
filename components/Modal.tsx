@@ -29,11 +29,14 @@ const Modal: React.FC<ModalProps> = ({
             backdrop-blur-sm 
             fixed 
             inset-0
+            z-[60]
           " 
         />
         <Dialog.Content
           className="
             fixed 
+            z-[70]
+            overflow-y-auto
             drop-shadow-md 
             border 
             border-pink-700 

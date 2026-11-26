@@ -14,7 +14,7 @@ export default function SupabaseProvider({children}:{children:ReactNode}) {
   const [isLoading,setLoading]=useState(true);
   useEffect(()=>{
     let active=true;
-    supabaseClient.auth.getSession().then(({data})=>{if(active){setSession(data.session);setLoading(false);}});
+    supabaseClient.auth.getSession().then(async({data})=>{const session=data.session;if(!session){if(active){setSession(null);setLoading(false);}return;}const verified=await supabaseClient.auth.getUser();if(active){setSession(verified.data.user?{...session,user:verified.data.user}:null);setLoading(false);}});
     const {data}=supabaseClient.auth.onAuthStateChange((_event,next)=>{setSession(next);setLoading(false);});
     return ()=>{active=false;data.subscription.unsubscribe();};
   },[supabaseClient]);

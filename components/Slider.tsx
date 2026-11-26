@@ -51,6 +51,7 @@ const Slider: React.FC<SlideProps> = ({
           " 
         />
       </RadixSlider.Track>
+      <RadixSlider.Thumb aria-label="Volume" className="block h-3 w-3 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-pink-500" />
     </RadixSlider.Root>
   );
 }

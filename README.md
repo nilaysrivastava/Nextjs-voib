@@ -19,7 +19,7 @@ Demo Premium is included. Listen to the original sample loops, search, save like
 
 ## Features
 
-- Email/password signup and login, email verification, email-link login, logout, and cookie-based sessions.
+- Email/password signup and login, email verification, email-link login, password recovery, logout, and cookie-based sessions.
 - Search, a personal upload library, liked songs, play/pause, previous/next, seek, mute, and volume controls.
 - MP3/WAV/OGG uploads, cover art, bounded file sizes, per-user folders and ownership rules.
 - Administrator catalog moderation with server authorization and database row-level security.
@@ -41,7 +41,7 @@ npm run dev
 
 `npm test`, `npm run lint`, `npx tsc --noEmit`, and `npm run build` check the application. `supabase/sql/access-test.sql` exercises database permissions in a transaction that rolls back its test changes.
 
-Deployment verification covered 28 live application checks and eight Stripe sandbox lifecycle checks: both demo logins, protected admin routes, upload ownership, audio streaming, private likes, demo password protection, signed subscription synchronization, duplicate checkout prevention, customer portal, Premium uploads, and cancellation revoking upload access. Test uploads and the temporary billing identity were removed afterward. Browser playback and automatic track advancement were also checked.
+Deployment verification covered 30 live application checks and eight Stripe sandbox lifecycle checks: both demo logins, protected admin routes, upload ownership, audio streaming, private likes, demo password protection, moderation cleaning up uploaded files, signed subscription synchronization, duplicate checkout prevention, customer portal, Premium uploads, and cancellation revoking upload access. Test uploads and the temporary billing identity were removed afterward. Browser playback and automatic track advancement were also checked. A public signup confirmation email reached Gmail's Inbox and its verification code successfully confirmed the account.
 
 ## Deployment configuration
 
@@ -64,7 +64,7 @@ The Stripe test key needs Customers read/write, Checkout Sessions read/write, Cu
 
 Use Stripe test card `4242 4242 4242 4242`, a future expiry, and any CVC. Stripe tax registration and collection would need separate review before any future live-payment launch; this application intentionally rejects live payments.
 
-For public signup emails, configure a custom SMTP sender in Supabase. Set the Site URL to the live origin and allow `/auth/callback` as a redirect URL. The confirmation template is in `supabase/templates/confirmation.html`. GitHub OAuth is optional and requires your own GitHub OAuth app configuration.
+For public signup emails, configure a custom SMTP sender in Supabase. Set the Site URL to the live origin and allow `/auth/callback` as a redirect URL. The confirmation and password recovery templates are in `supabase/templates/`. GitHub OAuth requires your own GitHub OAuth app configuration.
 
 Grant a private owner administrator access only through trusted Supabase **app metadata**: `{"groups":["admin"]}`. A demo administrator instead has `{"demo":true,"groups":["demo_admin"]}`. Never authorize from user-editable metadata.
 
