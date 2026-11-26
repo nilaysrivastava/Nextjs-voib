@@ -1,0 +1,191 @@
+{
+  "verifiedAt": "2026-11-26T08:20:50.436467+00:00",
+  "url": "https://voib-nilay.onrender.com",
+  "runtimeCommit": "be676e868620bbc38518a802a706a4cf6b9be746",
+  "renderDeploy": "dep-dc3umlk9v7es73dbk0gg",
+  "automatedApplicationChecks": {
+    "verifiedAt": "2026-11-26T03:00:48.076Z",
+    "url": "https://voib-nilay.onrender.com",
+    "allPassed": true,
+    "checks": [
+      {
+        "name": "HTTP /",
+        "pass": true
+      },
+      {
+        "name": "HTTP /search?title=Maahi",
+        "pass": true
+      },
+      {
+        "name": "HTTP /api/health",
+        "pass": true
+      },
+      {
+        "name": "HTTP /images/record-sleeve.svg",
+        "pass": true
+      },
+      {
+        "name": "Auth redirects stay on public origin /auth/confirm",
+        "pass": true
+      },
+      {
+        "name": "Auth redirects stay on public origin /auth/callback",
+        "pass": true
+      },
+      {
+        "name": "Anonymous catalog hides demo uploads",
+        "pass": true
+      },
+      {
+        "name": "Verified official catalogue is published",
+        "pass": true
+      },
+      {
+        "name": "Generated placeholder recordings removed",
+        "pass": true
+      },
+      {
+        "name": "Login demo.user@voib.example",
+        "pass": true
+      },
+      {
+        "name": "Login demo.admin@voib.example",
+        "pass": true
+      },
+      {
+        "name": "Admin page renders for demo administrator",
+        "pass": true
+      },
+      {
+        "name": "Anonymous admin API denied",
+        "pass": true
+      },
+      {
+        "name": "Listener admin API denied",
+        "pass": true
+      },
+      {
+        "name": "Demo administrator cannot change seed tracks",
+        "pass": true
+      },
+      {
+        "name": "Owner audio upload",
+        "pass": true
+      },
+      {
+        "name": "Owner cover upload",
+        "pass": true
+      },
+      {
+        "name": "Cross-user upload denied",
+        "pass": true
+      },
+      {
+        "name": "Create owned demo song",
+        "pass": true
+      },
+      {
+        "name": "Demo flag enforced by database",
+        "pass": true
+      },
+      {
+        "name": "Upload cannot forge an official video source",
+        "pass": true
+      },
+      {
+        "name": "Uploaded audio streams publicly",
+        "pass": true
+      },
+      {
+        "name": "Like song",
+        "pass": true
+      },
+      {
+        "name": "Likes remain private",
+        "pass": true
+      },
+      {
+        "name": "Demo administrator moderates demo upload",
+        "pass": true
+      },
+      {
+        "name": "Anonymous checkout denied",
+        "pass": true
+      },
+      {
+        "name": "Demo account cannot open billing",
+        "pass": true
+      },
+      {
+        "name": "Unsigned webhook rejected",
+        "pass": true
+      },
+      {
+        "name": "Public demo password protected",
+        "pass": true
+      },
+      {
+        "name": "Login demo.user@voib.example",
+        "pass": true
+      },
+      {
+        "name": "Demo administrator deletes demo upload",
+        "pass": true
+      },
+      {
+        "name": "Moderation removes uploaded songs",
+        "pass": true
+      },
+      {
+        "name": "Moderation removes uploaded images",
+        "pass": true
+      },
+      {
+        "name": "Seed song unchanged",
+        "pass": true
+      }
+    ]
+  },
+  "unitTests": {
+    "passed": 3,
+    "failed": 0
+  },
+  "staticChecks": {
+    "eslint": "passed",
+    "typescript": "passed",
+    "productionBuild": "passed"
+  },
+  "databaseAccessChecks": "passed; transaction rolled back",
+  "catalogue": {
+    "officialRecordings": 32,
+    "sourceMetadataVerified": 32,
+    "playback": "Official YouTube IFrame players; no commercial audio rehosted",
+    "oldGeneratedRecordings": "removed"
+  },
+  "browserChecks": [
+    "Desktop and 390x844 mobile layouts",
+    "Live Maahi playback with native video visible",
+    "Custom playback, seek, mute and volume controls",
+    "Ghazal and One Direction filters",
+    "Mobile navigation and library drawer",
+    "Demo sign-in, upload, favourites and saved-record queue",
+    "Private owner admin studio shows all 32 records",
+    "Final mobile sleeve caption clears artwork; no horizontal overflow; visible video viewport 356x201 px"
+  ],
+  "limitations": [
+    "YouTube availability and autoplay depend on region and browser policy",
+    "GitHub OAuth remains deferred at the owner's request",
+    "Render free services may sleep between visits"
+  ],
+  "screenshots": [
+    "voib-preview.png",
+    "voib-mobile-preview.png",
+    "voib-catalogue-preview.png"
+  ],
+  "renderStatus": "live",
+  "finalHealth": {
+    "status": "ok",
+    "app": "Voib",
+    "payments": "stripe-test-only"
+  }
+}

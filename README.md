@@ -46,7 +46,11 @@ npm run dev
 
 With the public Supabase settings in `.env.local`, run `VOIB_TEST_URL=https://voib-nilay.onrender.com npm run test:deployment` for the live smoke checks. They create temporary uploads through the public demo identities, verify moderation and access boundaries, and clean up afterward. Set `VOIB_TEST_REPORT` to save the JSON results to a local path.
 
-The initial free-hosting migration passed 45 live application, Stripe sandbox and email checks; its results are in [`docs/deployment-verification.json`](docs/deployment-verification.json). The redesigned interface adds genre and artist browsing, visible official-source playback, a responsive library drawer, consistent account/studio forms, and browser checks for the upload and favourites flows. Current release verification is recorded separately in `docs/frontend-verification.json`.
+The initial free-hosting migration passed 45 live application, Stripe sandbox and email checks; its results are in [`docs/deployment-verification.json`](docs/deployment-verification.json). The redesigned interface adds genre and artist browsing, visible official-source playback, a responsive library drawer, consistent account/studio forms, and browser checks for the upload and favourites flows. Current release verification is recorded separately in [`docs/frontend-verification.json`](docs/frontend-verification.json).
+
+![Voib listening room](docs/voib-preview.png)
+
+[Mobile preview](docs/voib-mobile-preview.png) · [Genre and artist collection](docs/voib-catalogue-preview.png)
 
 ## Deployment configuration
 
