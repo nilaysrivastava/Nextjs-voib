@@ -1,15 +1,8 @@
-"use client";
-
-import { BounceLoader } from "react-spinners";
-
-import Box from "@/components/Box";
-
-const Loading = () => {
-  return ( 
-    <Box className="h-full flex items-center justify-center">
-      <BounceLoader color="#22c55e" size={40} />
-    </Box>
+export default function Loading() {
+  return (
+    <section className="page-state" role="status" aria-label="Loading records">
+      <div className="loading-record" />
+      <p className="eyebrow">OPENING THE ROOM</p>
+    </section>
   );
 }
- 
-export default Loading;

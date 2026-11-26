@@ -1,69 +1,39 @@
 "use client";
-
 import Image from "next/image";
-
+import { FiPlay } from "react-icons/fi";
 import useLoadImage from "@/hooks/useLoadImage";
-import { Song } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
-
-interface MediaItemProps {
-  data: Song;
-  onClick?: (id: string) => void;
-}
-
-const MediaItem: React.FC<MediaItemProps> = ({
+import { Song } from "@/types";
+export default function MediaItem({
   data,
   onClick,
-}) => {
-  const player = usePlayer();
-  const imageUrl = useLoadImage(data);
-
-  const handleClick = () => {
-    if (onClick) {
-      return onClick(data.id);
-    }
-  
-    return player.setId(data.id);
-  };
-
-  return ( 
-    <div
-      onClick={handleClick}
-      className="
-        flex 
-        items-center 
-        gap-x-3 
-        cursor-pointer 
-        hover:bg-neutral-800/50 
-        w-full 
-        p-2 
-        rounded-md
-      "
+}: {
+  data: Song;
+  onClick?: (id: string) => void;
+}) {
+  const player = usePlayer(),
+    image = useLoadImage(data);
+  return (
+    <button
+      className="media-item"
+      aria-label={"Play " + data.title + " by " + data.author}
+      onClick={() => (onClick ? onClick(data.id) : player.setId(data.id))}
     >
-      <div 
-        className="
-          relative 
-          rounded-md 
-          min-h-[48px] 
-          min-w-[48px] 
-          overflow-hidden
-        "
-      >
+      <span className="media-cover">
         <Image
+          src={image || "/images/record-sleeve.svg"}
           fill
-          src={imageUrl || "/images/music-placeholder.png"}
-          alt="MediaItem"
-          className="object-cover"
+          sizes="56px"
+          alt=""
         />
-      </div>
-      <div className="flex flex-col gap-y-1 overflow-hidden">
-        <p className="text-white truncate">{data.title}</p>
-        <p className="text-neutral-400 text-sm truncate">
-          By {data.author}
-        </p>
-      </div>
-    </div>
+        <span>
+          <FiPlay />
+        </span>
+      </span>
+      <span className="media-copy">
+        <strong>{data.title}</strong>
+        <small>{data.author}</small>
+      </span>
+    </button>
   );
 }
- 
-export default MediaItem;

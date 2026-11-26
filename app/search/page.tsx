@@ -1,40 +1,42 @@
 import getSongsByTitle from "@/actions/getSongsByTitle";
 import Header from "@/components/Header";
-
-import SearchContent from "./components/SearchContent";
-import SearchInput from '../../components/SearchInput';
-
+import SearchInput from "@/components/SearchInput";
+import TrackList from "@/components/TrackList";
 export const revalidate = 0;
-
-interface SearchProps {
-  searchParams: Promise<{ title?: string }>
-};
-
-const Search = async ({ searchParams }: SearchProps) => {
-  const songs = await getSongsByTitle((await searchParams).title || "");
-
+export default async function Search({
+  searchParams,
+}: {
+  searchParams: Promise<{ title?: string }>;
+}) {
+  const title = (await searchParams).title || "",
+    songs = await getSongsByTitle(title);
   return (
-    <div 
-      className="
-        bg-neutral-900 
-        rounded-lg 
-        h-full 
-        w-full 
-        overflow-hidden 
-        overflow-y-auto
-      "
-    >
+    <div className="interior-page">
       <Header>
-        <div className="mb-2 flex flex-col gap-y-6">
-          <h1 className="text-white text-3xl font-semibold">
-            Search
-          </h1>
-          <SearchInput />
-        </div>
+        <p className="eyebrow">EXPLORE THE COLLECTION</p>
+        <h1>
+          Follow your <em>curiosity.</em>
+        </h1>
+        <p className="page-description">
+          A familiar favourite. A new discovery. Start with a title.
+        </p>
       </Header>
-      <SearchContent songs={songs} />
+      <div className="search-section">
+        <SearchInput initialValue={title} />
+        <div className="results-heading">
+          <p className="eyebrow">
+            {title ? "RESULTS FOR “" + title + "”" : "ALL RECORDS"}
+          </p>
+          <span>
+            {songs.length} {songs.length === 1 ? "record" : "records"}
+          </span>
+        </div>
+        <TrackList
+          songs={songs}
+          emptyTitle="A little further afield."
+          emptyText="We could not find that title. Try a different search."
+        />
+      </div>
     </div>
   );
 }
-
-export default Search;

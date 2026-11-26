@@ -1,87 +1,53 @@
 "use client";
-
 import Image from "next/image";
-
-import useLoadImage from "@/hooks/useLoadImage";
+import { FiArrowUpRight, FiPlay } from "react-icons/fi";
 import { Song } from "@/types";
-
-import PlayButton from "./PlayButton";
-
-interface SongItemProps {
+import useLoadImage from "@/hooks/useLoadImage";
+export default function SongItem({
+  data,
+  onClick,
+  index = 0,
+}: {
   data: Song;
   onClick: (id: string) => void;
-}
-
-const SongItem: React.FC<SongItemProps> = ({
-  data,
-  onClick
-}) => {
-  const imagePath = useLoadImage(data);
-
-  return ( 
-    <div
-      onClick={() => onClick(data.id)} 
-      className="
-        relative 
-        group 
-        flex 
-        flex-col 
-        items-center 
-        justify-center 
-        rounded-md 
-        overflow-hidden 
-        gap-x-4 
-        bg-neutral-400/5 
-        cursor-pointer 
-        hover:bg-neutral-400/10 
-        transition 
-        p-3
-      "
-    >
-      <div 
-        className="
-          relative 
-          aspect-square 
-          w-full
-          h-full 
-          rounded-md 
-          overflow-hidden
-        "
+  index?: number;
+}) {
+  const image = useLoadImage(data);
+  return (
+    <article className="record-card">
+      <button
+        className="record-art"
+        onClick={() => onClick(data.id)}
+        aria-label={"Play " + data.title}
       >
         <Image
-          className="object-cover"
-          src={imagePath || '/images/liked.png'}
+          src={image || "/images/record-sleeve.svg"}
           fill
-          alt="Image"
+          sizes="(max-width:640px) 88vw, (max-width:1000px) 42vw, 30vw"
+          alt={data.title + " cover art"}
         />
-      </div>
-      <div className="flex flex-col items-start w-full pt-4 gap-y-1">
-        <p className="font-semibold truncate w-full">
-          {data.title}
-        </p>
-        <p 
-          className="
-            text-neutral-400 
-            text-sm 
-            pb-4 
-            w-full 
-            truncate
-          "
+        <span className="record-play">
+          <FiPlay size={22} />
+        </span>
+        <span className="record-number">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      </button>
+      <div className="record-caption">
+        <div>
+          <button onClick={() => onClick(data.id)} className="record-title">
+            {data.title}
+          </button>
+          <p>{data.author}</p>
+        </div>
+        <button
+          className="record-open"
+          aria-label={"Listen to " + data.title}
+          onClick={() => onClick(data.id)}
         >
-          By {data.author}
-        </p>
+          <FiArrowUpRight size={24} />
+        </button>
       </div>
-      <div 
-        className="
-          absolute 
-          bottom-24 
-          right-5
-        "
-      >
-        <PlayButton />
-      </div>
-    </div>
-   );
+    </article>
+  );
 }
- 
-export default SongItem;

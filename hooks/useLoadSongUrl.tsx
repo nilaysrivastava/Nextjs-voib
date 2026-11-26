@@ -6,15 +6,16 @@ const useLoadSongUrl = (song: Song) => {
   const supabaseClient = useSupabaseClient();
 
   if (!song) {
-    return '';
+    return "";
   }
 
-  if (song.song_path.startsWith('/')) return song.song_path;
+  if (song.source_type === "youtube") return "";
 
-  const { data: songData } = supabaseClient
-  .storage
-  .from('songs')
-  .getPublicUrl(song.song_path);
+  if (song.song_path.startsWith("/")) return song.song_path;
+
+  const { data: songData } = supabaseClient.storage
+    .from("songs")
+    .getPublicUrl(song.song_path);
 
   return songData.publicUrl;
 };

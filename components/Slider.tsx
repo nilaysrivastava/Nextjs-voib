@@ -1,59 +1,27 @@
 "use client";
-
-import * as RadixSlider from '@radix-ui/react-slider';
-
-interface SlideProps {
+import * as Slider from "@radix-ui/react-slider";
+export default function Volume({
+  value = 1,
+  onChange,
+  disabled = false,
+}: {
   value?: number;
   onChange?: (value: number) => void;
-}
-
-const Slider: React.FC<SlideProps> = ({ 
-  value = 1, 
-  onChange
-}) => {
-  const handleChange = (newValue: number[]) => {
-    onChange?.(newValue[0]);
-  };
-
-  return ( 
-    <RadixSlider.Root
-      className="
-        relative 
-        flex 
-        items-center 
-        select-none 
-        touch-none 
-        w-full 
-        h-10
-      "
-      defaultValue={[1]}
+  disabled?: boolean;
+}) {
+  return (
+    <Slider.Root
+      className="slider-root"
+      disabled={disabled}
       value={[value]}
-      onValueChange={handleChange}
+      onValueChange={(v) => onChange?.(v[0])}
       max={1}
-      step={0.1}
-      aria-label="Volume"
+      step={0.05}
     >
-      <RadixSlider.Track 
-        className="
-          bg-neutral-600 
-          relative 
-          grow 
-          rounded-full 
-          h-[3px]
-        "
-      >
-        <RadixSlider.Range 
-          className="
-            absolute 
-            bg-pink-700 
-            rounded-full 
-            h-full
-          " 
-        />
-      </RadixSlider.Track>
-      <RadixSlider.Thumb aria-label="Volume" className="block h-3 w-3 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-pink-500" />
-    </RadixSlider.Root>
+      <Slider.Track className="slider-track">
+        <Slider.Range className="slider-range" />
+      </Slider.Track>
+      <Slider.Thumb aria-label="Volume" className="slider-thumb" />
+    </Slider.Root>
   );
 }
- 
-export default Slider;

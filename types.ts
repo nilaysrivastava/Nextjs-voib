@@ -1,6 +1,15 @@
 import Stripe from "stripe";
 
 export interface Song {
+  source_type?: "upload" | "youtube";
+  youtube_id?: string | null;
+  artists?: string[];
+  genres?: string[];
+  collections?: string[];
+  source_channel?: string | null;
+  source_channel_url?: string | null;
+  is_demo?: boolean;
+  is_seed?: boolean;
   id: string;
   user_id: string;
   author: string;

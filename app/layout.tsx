@@ -1,4 +1,4 @@
-import { Figtree } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 
 import getSongsByUserId from "@/actions/getSongsByUserId";
 import getActiveProductsWithPrices from "@/actions/getActiveProductsWithPrices";
@@ -9,14 +9,26 @@ import ModalProvider from "@/providers/ModalProvider";
 import SupabaseProvider from "@/providers/SupabaseProvider";
 
 import "./globals.css";
-import DemoAccess from "@/components/DemoLogins";
+
 import Player from "@/components/Player";
 
-const font = Figtree({ subsets: ["latin"] });
+const display = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
+const body = Manrope({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata = {
   title: "Voib",
-  description: "Listen to Good Music!",
+  description:
+    "An independent listening room. Discover records, keep your favourites, and listen unhurried.",
 };
 
 export const revalidate = 0;
@@ -30,15 +42,14 @@ export default async function RootLayout({
   const userSongs = await getSongsByUserId();
 
   return (
-    <html lang="en">
-      <body className={`${font.className} flex h-dvh flex-col overflow-hidden`}>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={`${display.variable} ${body.variable}`}>
         <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider products={products} />
-            <DemoAccess />
-            <div className="min-h-0 flex-1">
-            <Sidebar songs={userSongs}>{children}</Sidebar>
+            <div>
+              <Sidebar songs={userSongs}>{children}</Sidebar>
             </div>
             <Player />
           </UserProvider>

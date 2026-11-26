@@ -1,50 +1,19 @@
 "use client";
-
 import { Song } from "@/types";
 import SongItem from "@/components/SongItem";
 import useOnPlay from "@/hooks/useOnPlay";
-
-interface PageContentProps {
-  songs: Song[];
-}
-
-const PageContent: React.FC<PageContentProps> = ({
-  songs
-}) => {
-  const onPlay = useOnPlay(songs);
-
-  if (songs.length === 0) {
-    return (
-      <div className="mt-4 text-neutral-400">
-        No songs available.
-      </div>
-    )
-  }
-
-  return ( 
-    <div 
-      className="
-        grid 
-        grid-cols-2 
-        sm:grid-cols-3 
-        md:grid-cols-3 
-        lg:grid-cols-4 
-        xl:grid-cols-5 
-        2xl:grid-cols-8 
-        gap-4 
-        mt-4
-      "
-    >
-      {songs.map((item) => (
-        <SongItem 
-          onClick={(id: string) => onPlay(id)} 
-          key={item.id} 
-          data={item}
-        />
+export default function PageContent({ songs }: { songs: Song[] }) {
+  const play = useOnPlay(songs);
+  return songs.length ? (
+    <div className="record-grid">
+      {songs.map((song, index) => (
+        <SongItem key={song.id} data={song} index={index} onClick={play} />
       ))}
-      {/* Page Content! */}
+    </div>
+  ) : (
+    <div className="empty-state">
+      <h3>A quiet room, for now.</h3>
+      <p>New records will appear here as they are added.</p>
     </div>
   );
 }
- 
-export default PageContent;

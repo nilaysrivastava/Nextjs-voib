@@ -1,15 +1,12 @@
 "use client";
-
-import Box from "@/components/Box";
-
-const Error = () => {
-  return ( 
-    <Box className="h-full flex items-center justify-center">
-      <div className="text-neutral-400">
-        Something went wrong.
-      </div>
-    </Box>
+import Button from "@/components/Button";
+export default function Error({ reset }: { reset: () => void }) {
+  return (
+    <section className="page-state">
+      <p className="eyebrow">A MOMENTARY PAUSE</p>
+      <h1>The record skipped.</h1>
+      <p>We could not open this page. Let’s give it another spin.</p>
+      <Button onClick={reset}>Try again</Button>
+    </section>
   );
 }
- 
-export default Error;

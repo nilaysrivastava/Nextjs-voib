@@ -1,30 +1,15 @@
 import { Song } from "@/types";
-
 import usePlayer from "./usePlayer";
-// import useSubscribeModal from "./useSubscribeModal";
 import useAuthModal from "./useAuthModal";
 import { useUser } from "./useUser";
-
-const useOnPlay = (songs: Song[]) => {
-  const player = usePlayer();
-//   const subscribeModal = useSubscribeModal();
-  const authModal = useAuthModal();
-  const { user } = useUser();
-
-  const onPlay = (id: string) => {
-    if (!user) {
-      return authModal.onOpen();
-    }
-
-    // if (!subscription) {
-    //   return subscribeModal.onOpen();
-    // }
-
+export default function useOnPlay(songs: Song[]) {
+  const player = usePlayer(),
+    auth = useAuthModal(),
+    { user } = useUser();
+  return (id: string) => {
+    const record = songs.find((s) => s.id === id);
+    if (!user && record?.source_type !== "youtube") return auth.onOpen();
     player.setId(id);
-    player.setIds(songs.map((song) => song.id));
-  }
-
-  return onPlay;
-};
-
-export default useOnPlay;
+    player.setIds(songs.map((s) => s.id));
+  };
+}

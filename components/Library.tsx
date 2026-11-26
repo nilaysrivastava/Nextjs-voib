@@ -1,66 +1,78 @@
 "use client";
-
-import { TbPlaylist } from "react-icons/tb";
-import { AiOutlinePlus } from "react-icons/ai";
-
+import { FiPlus, FiDisc } from "react-icons/fi";
 import { Song } from "@/types";
 import useUploadModal from "@/hooks/useUploadModal";
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
 import useSubscribeModal from "@/hooks/useSubscribeModal";
 import useOnPlay from "@/hooks/useOnPlay";
-
 import MediaItem from "./MediaItem";
-
-interface LibraryProps {
+import Button from "./Button";
+export default function Library({
+  songs,
+  onNavigate,
+}: {
   songs: Song[];
-}
-
-const Library: React.FC<LibraryProps> = ({ songs }) => {
-  const { user, subscription } = useUser();
-  const uploadModal = useUploadModal();
-  const authModal = useAuthModal();
-  const subscribeModal = useSubscribeModal();
-  const onPlay = useOnPlay(songs);
-
-  const onClick = () => {
-    if (!user) {
-      return authModal.onOpen();
-    }
-    if (!subscription && !user.app_metadata.demo && !user.app_metadata.groups?.includes("admin")) {
-      return subscribeModal.onOpen();
-    }
-    return uploadModal.onOpen();
-  };
-
+  onNavigate?: () => void;
+}) {
+  const { user, subscription } = useUser(),
+    upload = useUploadModal(),
+    auth = useAuthModal(),
+    subscribe = useSubscribeModal(),
+    play = useOnPlay(songs);
+  function add() {
+    onNavigate?.();
+    if (!user) return auth.onOpen();
+    if (
+      !subscription &&
+      !user.app_metadata.demo &&
+      !user.app_metadata.groups?.includes("admin")
+    )
+      return subscribe.onOpen();
+    upload.onOpen();
+  }
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center justify-between px-5 pt-4">
-        <div className="inline-flex items-center gap-x-2">
-          <TbPlaylist className="text-neutral-400" size={26} />
-          <p className="text-neutral-400 font-medium text-md">Your Library</p>
+    <div className="library-content">
+      <div className="library-toolbar">
+        <span className="eyebrow">
+          {String(songs.length).padStart(2, "0")} RECORDS
+        </span>
+        <Button variant="secondary" aria-label="Upload a song" onClick={add}>
+          <FiPlus /> Add a record
+        </Button>
+      </div>
+      {songs.length ? (
+        <div className="library-records">
+          {songs.map((song) => (
+            <MediaItem
+              key={song.id}
+              data={song}
+              onClick={(id) => {
+                play(id);
+                onNavigate?.();
+              }}
+            />
+          ))}
         </div>
-        <button aria-label="Upload a song" onClick={onClick}><AiOutlinePlus
-          size={20}
-          className="
-            text-neutral-400 
-            cursor-pointer 
-            hover:text-white 
-            transition
-          "
-        /></button>
-      </div>
-      <div className="flex flex-col gap-y-2 mt-4 px-3">
-        {songs.map((item) => (
-          <MediaItem
-            onClick={(id: string) => onPlay(id)}
-            key={item.id}
-            data={item}
-          />
-        ))}
-      </div>
+      ) : (
+        <div className="empty-state">
+          <FiDisc size={34} />
+          <h3>
+            A collection begins
+            <br />
+            with one record.
+          </h3>
+          <p>
+            {user
+              ? "Add your own music and keep it close."
+              : "Sign in to make a little space for your music."}
+          </p>
+          <Button onClick={add}>
+            {user ? "Upload your first record" : "Sign in to begin"}
+            <FiPlus />
+          </Button>
+        </div>
+      )}
     </div>
   );
-};
-
-export default Library;
+}
