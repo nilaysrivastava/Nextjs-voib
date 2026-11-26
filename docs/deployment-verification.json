@@ -1,0 +1,216 @@
+{
+  "url": "https://voib-nilay.onrender.com",
+  "verifiedAt": "2026-11-26T02:02:18.625Z",
+  "deployedCommit": "79f363a501e30b2780cb77f467e2d5e77f6cd1c0",
+  "allPassed": true,
+  "liveChecks": 45,
+  "reports": [
+    {
+      "verifiedAt": "2026-11-26T02:02:18.625Z",
+      "url": "https://voib-nilay.onrender.com",
+      "allPassed": true,
+      "checks": [
+        {
+          "name": "HTTP /",
+          "pass": true
+        },
+        {
+          "name": "HTTP /search?title=Neon",
+          "pass": true
+        },
+        {
+          "name": "HTTP /api/health",
+          "pass": true
+        },
+        {
+          "name": "HTTP /demo/neon-drift.mp3",
+          "pass": true
+        },
+        {
+          "name": "HTTP /demo/neon-drift.svg",
+          "pass": true
+        },
+        {
+          "name": "Auth redirects stay on public origin /auth/confirm",
+          "pass": true
+        },
+        {
+          "name": "Auth redirects stay on public origin /auth/callback",
+          "pass": true
+        },
+        {
+          "name": "Anonymous catalog hides demo uploads",
+          "pass": true
+        },
+        {
+          "name": "Login demo.user@voib.example",
+          "pass": true
+        },
+        {
+          "name": "Login demo.admin@voib.example",
+          "pass": true
+        },
+        {
+          "name": "Admin page renders for demo administrator",
+          "pass": true
+        },
+        {
+          "name": "Anonymous admin API denied",
+          "pass": true
+        },
+        {
+          "name": "Listener admin API denied",
+          "pass": true
+        },
+        {
+          "name": "Demo administrator cannot change seed tracks",
+          "pass": true
+        },
+        {
+          "name": "Owner audio upload",
+          "pass": true
+        },
+        {
+          "name": "Owner cover upload",
+          "pass": true
+        },
+        {
+          "name": "Cross-user upload denied",
+          "pass": true
+        },
+        {
+          "name": "Create owned demo song",
+          "pass": true
+        },
+        {
+          "name": "Demo flag enforced by database",
+          "pass": true
+        },
+        {
+          "name": "Uploaded audio streams publicly",
+          "pass": true
+        },
+        {
+          "name": "Like song",
+          "pass": true
+        },
+        {
+          "name": "Likes remain private",
+          "pass": true
+        },
+        {
+          "name": "Demo administrator moderates demo upload",
+          "pass": true
+        },
+        {
+          "name": "Anonymous checkout denied",
+          "pass": true
+        },
+        {
+          "name": "Demo account cannot open billing",
+          "pass": true
+        },
+        {
+          "name": "Unsigned webhook rejected",
+          "pass": true
+        },
+        {
+          "name": "Public demo password protected",
+          "pass": true
+        },
+        {
+          "name": "Login demo.user@voib.example",
+          "pass": true
+        },
+        {
+          "name": "Demo administrator deletes demo upload",
+          "pass": true
+        },
+        {
+          "name": "Moderation removes uploaded songs",
+          "pass": true
+        },
+        {
+          "name": "Moderation removes uploaded images",
+          "pass": true
+        },
+        {
+          "name": "Seed song unchanged",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "verifiedAt": "2026-11-26T01:43:19.925Z",
+      "url": "https://voib-nilay.onrender.com",
+      "allPassed": true,
+      "checks": [
+        {
+          "name": "Hosted test Checkout completed without real money",
+          "pass": true
+        },
+        {
+          "name": "Real signed webhook synchronized active subscription",
+          "pass": true
+        },
+        {
+          "name": "Duplicate active checkout blocked",
+          "pass": true
+        },
+        {
+          "name": "Own test customer portal opens",
+          "pass": true
+        },
+        {
+          "name": "Active normal subscriber can upload",
+          "pass": true
+        },
+        {
+          "name": "Cancellation webhook synchronized canceled status",
+          "pass": true
+        },
+        {
+          "name": "Canceled subscriber loses upload access",
+          "pass": true
+        },
+        {
+          "name": "Disposable billing identity cleaned up",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "verifiedAt": "2026-11-26T02:02:08.249Z",
+      "url": "https://voib-nilay.onrender.com",
+      "allPassed": true,
+      "checks": [
+        {
+          "name": "Signup email delivered to Inbox and verification code accepted",
+          "pass": true
+        },
+        {
+          "name": "Recovery email delivered to Inbox",
+          "pass": true
+        },
+        {
+          "name": "Delivered recovery link establishes session and reaches reset form",
+          "pass": true
+        },
+        {
+          "name": "Recovered account accepts new password",
+          "pass": true
+        },
+        {
+          "name": "Disposable email fixture cleaned up",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "hosting": {
+    "render": "Free",
+    "supabase": "Free",
+    "stripe": "test only"
+  },
+  "githubLogin": "Disabled at owner request"
+}
