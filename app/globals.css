@@ -3289,3 +3289,180 @@ input {
     padding-block: 7px;
   }
 }
+/* Give the official video its own space so it never covers browsing controls. */
+:root {
+  --nav-height: 96px;
+  --dock-height: 98px;
+}
+.official-player-heading {
+  height: 52px;
+  padding-block: 7px;
+}
+.official-player-hint {
+  height: 26px;
+  padding-top: 5px;
+}
+.official-source {
+  height: 34px;
+  padding-block: 0;
+}
+@media (min-width: 1100px) {
+  body:has(.official-player-panel) #main-content,
+  body:has(.official-player-panel) .site-footer {
+    margin-right: 528px;
+  }
+  body:has(.official-player-panel) .official-player-panel {
+    top: 116px;
+    bottom: auto;
+  }
+  body:has(.official-player-panel) .listening-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  body:has(.official-player-panel) .record-scene {
+    display: none;
+  }
+  body:has(.official-player-panel) .genre-grid,
+  body:has(.official-player-panel) .catalog-records {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body:has(.official-player-panel) .artist-section {
+    display: block;
+  }
+  body:has(.official-player-panel) .artist-section > .eyebrow {
+    margin-bottom: 12px;
+  }
+  body:has(.official-player-panel) .account-layout {
+    grid-template-columns: 1fr;
+  }
+  body:has(.official-player-panel) .studio-row {
+    grid-template-columns: 20px minmax(0, 1fr);
+  }
+  body:has(.official-player-panel) .studio-row > .field-label,
+  body:has(.official-player-panel) .studio-actions {
+    grid-column: 2;
+  }
+  body:has(.official-player-panel) .studio-row > .track-index {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  body:has(.official-player-panel) .listening-note {
+    grid-template-columns: 1fr 1fr;
+  }
+  body:has(.official-player-panel) .listening-note > .eyebrow {
+    grid-column: 1/3;
+  }
+}
+@media (max-width: 1099px) {
+  :root {
+    --nav-height: 85px;
+    --official-slot: 398px;
+  }
+  body:has(.official-player-panel) .app-shell {
+    height: 100dvh;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+  body:has(.official-player-panel) #main-content {
+    height: calc(
+      100dvh - var(--nav-height) - var(--official-slot) - var(--dock-height)
+    );
+    margin-top: var(--official-slot);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-padding-top: 20px;
+  }
+  body:has(.official-player-panel) .site-footer,
+  body:has(.official-player-panel) .listening-hero,
+  body:has(.official-player-panel) .listening-note {
+    display: none;
+  }
+  body:has(.official-player-panel) .official-player-panel {
+    top: calc(var(--nav-height) + 8px);
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translateX(-50%);
+    width: 480px;
+  }
+  body:has(.official-player-panel) .collection-section {
+    padding-top: 24px;
+  }
+  body:has(.official-player-panel) .collection-section .section-heading {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+@media (max-width: 850px) {
+  :root {
+    --nav-height: 80px;
+  }
+}
+@media (max-width: 700px) {
+  :root {
+    --nav-height: 75px;
+    --dock-height: 122px;
+    --official-slot: calc(max(200px, calc((100vw - 32px) * 0.5625)) + 120px);
+  }
+  body:has(.official-player-panel) .official-player-panel {
+    width: calc(100vw - 32px);
+  }
+  .official-player-heading {
+    height: 48px;
+  }
+  .official-player-hint {
+    height: 24px;
+  }
+  .official-source {
+    height: 32px;
+  }
+  body:has(.official-player-panel) .collection-section .section-heading h2 {
+    font-size: 30px;
+  }
+  body:has(.official-player-panel) .collection-section .section-heading {
+    margin-bottom: 18px;
+  }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  body:has(.official-player-panel) {
+    --official-slot: 284px;
+    --dock-height: 88px;
+  }
+  body:has(.official-player-panel) .official-video-frame {
+    height: 200px;
+  }
+  .official-player-heading {
+    height: 40px;
+  }
+  .official-player-hint {
+    display: none;
+  }
+  .official-source {
+    height: 28px;
+  }
+  body:has(.official-player-panel) .player-dock {
+    height: 88px;
+  }
+  body:has(.official-player-panel) .player-content {
+    padding-bottom: 8px;
+  }
+  body:has(.official-player-panel) .seek-control {
+    display: none;
+  }
+  body:has(.official-player-panel) .genre-card {
+    min-height: 110px;
+  }
+  body:has(.official-player-panel) .genre-card > small {
+    display: none;
+  }
+  body:has(.official-player-panel) .genre-card > strong {
+    margin-top: 16px;
+  }
+}
+/* The sleeve clears its caption, including on narrow tablet layouts. */
+.hero-sleeve {
+  width: 66%;
+}
+.vinyl-composition {
+  top: 11%;
+}

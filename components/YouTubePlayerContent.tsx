@@ -69,7 +69,7 @@ export default function YouTubePlayerContent({ song }: { song: Song }) {
               iframe.title = song.title + " — official YouTube player";
               iframe.referrerPolicy = "strict-origin-when-cross-origin";
               target.setVolume(70);
-              target.playVideo();
+              if (!document.hidden) target.playVideo();
             },
             onStateChange: ({ data }) => {
               if (!alive) return;
@@ -117,7 +117,7 @@ export default function YouTubePlayerContent({ song }: { song: Song }) {
       }
     }, 500);
     const pauseForVisibility = () => {
-      if (document.hidden) video.current?.pauseVideo();
+      if (document.hidden) video.current?.pauseVideo?.();
     };
     document.addEventListener("visibilitychange", pauseForVisibility);
     const observer = new MutationObserver(() => {
@@ -126,7 +126,7 @@ export default function YouTubePlayerContent({ song }: { song: Song }) {
           '.modal-panel[data-state="open"],.library-drawer[data-state="open"],.mobile-navigation[data-state="open"]',
         )
       )
-        video.current?.pauseVideo();
+        video.current?.pauseVideo?.();
     });
     observer.observe(document.body, {
       childList: true,
