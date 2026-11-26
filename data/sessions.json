@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "velvet-hours",
+    "title": "Velvet Hours",
+    "mood": "Late-night keys",
+    "duration": 72
+  },
+  {
+    "slug": "afterglow",
+    "title": "Afterglow",
+    "mood": "Warm electronic",
+    "duration": 24
+  },
+  {
+    "slug": "neon-drift",
+    "title": "Neon Drift",
+    "mood": "Electronic study",
+    "duration": 24
+  },
+  {
+    "slug": "quiet-orbit",
+    "title": "Quiet Orbit",
+    "mood": "Ambient study",
+    "duration": 24
+  },
+  {
+    "slug": "blue-hour",
+    "title": "Blue Hour",
+    "mood": "Slow piano",
+    "duration": 72
+  },
+  {
+    "slug": "saffron-sky",
+    "title": "Saffron Sky",
+    "mood": "Downtempo",
+    "duration": 72
+  },
+  {
+    "slug": "paper-moon",
+    "title": "Paper Moon",
+    "mood": "Floating keys",
+    "duration": 72
+  },
+  {
+    "slug": "midnight-drive",
+    "title": "Midnight Drive",
+    "mood": "Electronic pulse",
+    "duration": 72
+  },
+  {
+    "slug": "still-water",
+    "title": "Still Water",
+    "mood": "Ambient",
+    "duration": 72
+  },
+  {
+    "slug": "last-light",
+    "title": "Last Light",
+    "mood": "Piano & atmosphere",
+    "duration": 72
+  }
+]

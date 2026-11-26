@@ -46,7 +46,7 @@ npm run dev
 
 With the public Supabase settings in `.env.local`, run `VOIB_TEST_URL=https://voib-nilay.onrender.com npm run test:deployment` for the live smoke checks. They create temporary uploads through the public demo identities, verify moderation and access boundaries, and clean up afterward. Set `VOIB_TEST_REPORT` to save the JSON results to a local path.
 
-The initial free-hosting migration passed 45 live application, Stripe sandbox and email checks; its results are in [`docs/deployment-verification.json`](docs/deployment-verification.json). The redesigned interface adds genre and artist browsing, visible official-source playback, a responsive library drawer, consistent account/studio forms, and browser checks for the upload and favourites flows. Current release verification is recorded separately in [`docs/frontend-verification.json`](docs/frontend-verification.json).
+The initial free-hosting migration passed 45 live application, Stripe sandbox and email checks; its results are in [`docs/deployment-verification.json`](docs/deployment-verification.json). The audio-first interface features ten original Voib Sessions in a prominent collection, with guest playback through the persistent bottom player. A compact disclosure below keeps the 32 official YouTube recordings and their genre, artist and film filters available. Search, uploads, favourites, account and studio flows share the same design. Current release verification is recorded separately in [`docs/frontend-verification.json`](docs/frontend-verification.json).
 
 ![Voib listening room](docs/voib-preview.png)
 
@@ -84,3 +84,7 @@ The Render service uses a public Git URL, so deployment after a push is manual. 
 Commercial recordings remain on their official YouTube channels. The visible player keeps YouTube controls and attribution, pauses when the document is hidden or an app dialog covers it, and offers a direct source link if an embed is unavailable in a listener’s region. It does not extract audio, strip advertisements, or support hidden/background YouTube playback. Browser autoplay policies can require another press of the native video play button.
 
 The catalogue includes Maahi, Zara Sa, Toh Phir Aao, Sajni by Jal, O Maahi, and selections from KK, Pritam, Arijit Singh, The Weeknd, Charlie Puth, One Direction, Michael Jackson, Jagjit Singh, Ghulam Ali, Mehdi Hasan and Farida Khanum. Source metadata was verified using YouTube’s public oEmbed endpoint.
+
+### Original audio collection
+
+Run `supabase/sql/sessions.sql` after deploying the bundled `public/sessions` assets. It restores the three original studies and adds seven new 72-second instrumentals, idempotently. `data/sessions.json` defines collection order, moods and durations; `public/sessions/README.md` documents provenance and permission. `scripts/generate-sessions.py` reproduces the arrangements (Python NumPy and FFmpeg required; restoring the three earlier tracks uses repository history).

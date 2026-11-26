@@ -3478,3 +3478,258 @@ input {
   position: relative;
   inset: auto;
 }
+
+/* Original sessions lead the listening experience. */
+.sessions-section {
+  padding: 68px 0 72px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 110px;
+}
+.sessions-intro {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+.sessions-intro .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sessions-intro h2 {
+  font-family: var(--font-display), serif;
+  font-size: clamp(64px, 7vw, 104px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -3px;
+  margin: 24px 0 0;
+}
+.sessions-intro h2 em {
+  color: var(--brass);
+  font-weight: 400;
+}
+.sessions-invitation {
+  max-width: 360px;
+  padding-bottom: 6px;
+}
+.sessions-invitation > p {
+  font-family: var(--font-display), serif;
+  font-size: 30px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.sessions-invitation > span {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+  display: block;
+}
+.sessions-invitation .button {
+  margin: 24px 0 14px;
+  gap: 15px;
+}
+.sessions-invitation small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.sessions-rule {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0 28px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+.sessions-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 38px 22px;
+}
+.sessions-grid .record-card {
+  padding-top: 0;
+}
+.sessions-grid .record-title {
+  font-size: 27px;
+}
+.sessions-grid .record-caption {
+  padding-top: 14px;
+}
+.sessions-grid .record-open {
+  min-width: 24px;
+  width: 24px;
+}
+.sessions-grid .record-open svg {
+  width: 20px;
+}
+.sessions-grid .record-caption p {
+  font-size: 11px;
+}
+.session-details {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 10px;
+}
+.session-record.is-active .record-art {
+  outline: 2px solid var(--brass);
+  outline-offset: 5px;
+}
+.session-record.is-active .session-details {
+  color: var(--brass);
+}
+.sessions-colophon {
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+  max-width: 670px;
+}
+.discovery-annex {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 35px;
+}
+.discovery-annex > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px 0;
+}
+.discovery-annex > summary::-webkit-details-marker {
+  display: none;
+}
+.discovery-annex h2 {
+  font-family: var(--font-display), serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-top: 10px;
+}
+.annex-action {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.discovery-annex[open] .annex-action svg {
+  transform: rotate(180deg);
+}
+.discovery-annex .section-heading {
+  display: none;
+}
+.discovery-annex .genre-card {
+  min-height: 135px;
+  padding: 18px;
+}
+.discovery-annex .genre-card > strong {
+  font-size: 27px;
+  margin-top: 16px;
+}
+.discovery-annex .genre-card > small {
+  display: none;
+}
+.discovery-annex .genre-card > svg {
+  bottom: 18px;
+  right: 18px;
+}
+.discovery-annex .record-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+body:has(.official-player-panel) .sessions-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (min-width: 1100px) {
+  .home-page .listening-hero {
+    padding-top: 40px;
+    padding-bottom: 45px;
+  }
+  .home-page .record-scene {
+    max-width: 380px;
+  }
+}
+@media (max-width: 1100px) {
+  .sessions-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .sessions-intro {
+    gap: 30px;
+  }
+}
+@media (max-width: 700px) {
+  .sessions-section {
+    padding: 40px 0 45px;
+  }
+  .sessions-intro {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+  .sessions-intro h2 {
+    font-size: 72px;
+    letter-spacing: -2px;
+    margin-top: 18px;
+  }
+  .sessions-invitation {
+    max-width: 100%;
+  }
+  .sessions-invitation > p {
+    font-size: 27px;
+  }
+  .sessions-grid,
+  body:has(.official-player-panel) .sessions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 18px;
+  }
+  .sessions-grid .record-card:first-child {
+    grid-column: auto;
+  }
+  .sessions-grid .record-title,
+  .sessions-grid .record-card:first-child .record-title {
+    font-size: 24px;
+  }
+  .sessions-grid .record-open {
+    display: none;
+  }
+  .sessions-grid .record-caption p {
+    font-size: 10px;
+  }
+  .session-details {
+    font-size: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .sessions-rule {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+  .discovery-annex > summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding: 25px 0;
+  }
+  .discovery-annex h2 {
+    font-size: 30px;
+  }
+  .discovery-annex .eyebrow {
+    font-size: 9px;
+  }
+  .discovery-annex .record-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .discovery-annex .record-card:first-child {
+    grid-column: auto;
+  }
+}

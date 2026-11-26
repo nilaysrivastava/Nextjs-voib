@@ -6,9 +6,11 @@ import { Song } from "@/types";
 import useLoadImage from "@/hooks/useLoadImage";
 import useOnPlay from "@/hooks/useOnPlay";
 import CatalogExplorer from "./CatalogExplorer";
+import SessionCollection, { orderSessions } from "./SessionCollection";
 export default function ListeningRoom({ songs }: { songs: Song[] }) {
-  const play = useOnPlay(songs),
-    featured = songs[0],
+  const sessionSongs = orderSessions(songs).map((record) => record.song);
+  const play = useOnPlay(sessionSongs.length ? sessionSongs : songs),
+    featured = sessionSongs[0] || songs[0],
     image = useLoadImage(featured);
   return (
     <div className="home-page">
@@ -33,7 +35,7 @@ export default function ListeningRoom({ songs }: { songs: Song[] }) {
               onClick={() => featured && play(featured.id)}
             >
               <FiPlay size={15} />
-              Start listening
+              Play Voib Sessions
             </button>
             <a href="#collection" className="text-link">
               Explore the collection <FiArrowDownRight />
@@ -99,7 +101,25 @@ export default function ListeningRoom({ songs }: { songs: Song[] }) {
           </div>
         </div>
       </section>
-      <CatalogExplorer songs={songs} />
+      <SessionCollection songs={songs} />
+      <details className="discovery-annex">
+        <summary>
+          <div>
+            <span className="eyebrow">
+              FURTHER LISTENING / OFFICIAL YOUTUBE COLLECTION
+            </span>
+            <h2>A room for every mood.</h2>
+          </div>
+          <span className="annex-action">
+            Explore{" "}
+            {songs.filter((song) => song.source_type === "youtube").length}{" "}
+            recordings <FiArrowDownRight />
+          </span>
+        </summary>
+        <CatalogExplorer
+          songs={songs.filter((song) => song.source_type === "youtube")}
+        />
+      </details>
       <section className="listening-note">
         <span className="eyebrow">A NOTE FROM THE ROOM</span>
         <p>

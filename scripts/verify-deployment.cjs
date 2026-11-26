@@ -89,11 +89,31 @@ async function login(email, password) {
     ),
   );
   check(
-    "Generated placeholder recordings removed",
-    anon.data.every(
-      (x) => !["Neon Drift", "Afterglow", "Quiet Orbit"].includes(x.title),
+    "Voib Sessions are published as native audio",
+    JSON.parse(fs.readFileSync("data/sessions.json", "utf8")).every((x) =>
+      anon.data.some(
+        (song) =>
+          song.title === x.title &&
+          song.source_type === "upload" &&
+          song.is_seed,
+      ),
     ),
   );
+  for (const session of JSON.parse(
+    fs.readFileSync("data/sessions.json", "utf8"),
+  )) {
+    const audio = await fetch(base + "/sessions/" + session.slug + ".mp3", {
+      headers: { Range: "bytes=0-1023" },
+      signal: AbortSignal.timeout(60000),
+    });
+    const bytes = await audio.arrayBuffer();
+    check(
+      "Native audio serves byte ranges: " + session.title,
+      audio.status === 206 &&
+        audio.headers.get("content-type")?.includes("audio/") &&
+        bytes.byteLength === 1024,
+    );
+  }
   user = await login("demo.user@voib.example", "VoibListener!2026");
   admin = await login("demo.admin@voib.example", "VoibAdmin!2026");
   check(

@@ -22,3 +22,7 @@ The player persists across navigation and exposes playback, queue navigation, se
 Desktop navigation becomes a focus-trapped menu below 700 px. The player keeps transport and seeking on small screens. Grid compositions adapt to the viewport rather than shrinking the desktop dashboard. Preserve keyboard navigation, meaningful button labels, visible focus, reduced-motion support, and real empty, loading and error states.
 
 Keep artwork decorative when an adjacent label supplies its meaning. Avoid adding fake filters, badges, track durations or high-resolution audio claims. Use actual record and account data.
+
+## Audio-first hierarchy
+
+Voib Sessions is the main collection: ten original instrumental studies with large cover art, track duration, listening notes and one play-collection action. The hero features a native-audio session, and guest playback uses the persistent bottom player. Three original studies return alongside seven longer arrangements. The official YouTube catalogue remains below in a compact, initially collapsed disclosure; opening it preserves genre, artist and film filtering.

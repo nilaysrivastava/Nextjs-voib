@@ -60,7 +60,7 @@ export default function CatalogExplorer({ songs }: { songs: Song[] }) {
     setLimit(6);
   }
   return (
-    <section id="collection" className="collection-section">
+    <section id="official-collection" className="collection-section">
       <div className="section-heading">
         <div>
           <p className="eyebrow">FIND A FEELING. STAY A WHILE.</p>

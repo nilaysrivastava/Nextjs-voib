@@ -8,7 +8,8 @@ export default function useOnPlay(songs: Song[]) {
     { user } = useUser();
   return (id: string) => {
     const record = songs.find((s) => s.id === id);
-    if (!user && record?.source_type !== "youtube") return auth.onOpen();
+    if (!user && record?.source_type !== "youtube" && !record?.is_seed)
+      return auth.onOpen();
     player.setId(id);
     player.setIds(songs.map((s) => s.id));
   };
