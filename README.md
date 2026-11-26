@@ -4,6 +4,8 @@ A music player built with Next.js, React, Supabase Auth/Postgres/Storage, and St
 
 **Deployment:** https://voib-nilay.onrender.com
 
+Hosted on Render Free and Supabase Free. Stripe Checkout uses the existing Voib Premium **₹49/month test plan**; it never charges real money. Public signup emails use the verified Brevo sender through Supabase custom SMTP.
+
 ## Try the public demo
 
 The website displays these credentials and provides login buttons:
@@ -38,6 +40,8 @@ npm run dev
 ```
 
 `npm test`, `npm run lint`, `npx tsc --noEmit`, and `npm run build` check the application. `supabase/sql/access-test.sql` exercises database permissions in a transaction that rolls back its test changes.
+
+Deployment verification covered 28 live application checks and eight Stripe sandbox lifecycle checks: both demo logins, protected admin routes, upload ownership, audio streaming, private likes, demo password protection, signed subscription synchronization, duplicate checkout prevention, customer portal, Premium uploads, and cancellation revoking upload access. Test uploads and the temporary billing identity were removed afterward. Browser playback and automatic track advancement were also checked.
 
 ## Deployment configuration
 

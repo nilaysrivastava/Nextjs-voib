@@ -11,7 +11,7 @@ import usePlayer from "@/hooks/usePlayer";
 import SidebarItem from "./SidebarItem";
 import Box from "./Box";
 import Library from "./Library";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -21,6 +21,7 @@ interface SidebarProps {
 const Sidebar = ({ children, songs }: SidebarProps) => {
   const pathname = usePathname();
   const player = usePlayer();
+  const [libraryOpen, setLibraryOpen] = useState(false);
 
   const routes = useMemo(
     () => [
@@ -50,6 +51,14 @@ const Sidebar = ({ children, songs }: SidebarProps) => {
         player.activeId && "h-[calc(100%-80px)]"
       )}
     >
+      <button aria-label="Open your library" onClick={()=>setLibraryOpen(true)} className="fixed bottom-24 left-4 z-30 rounded-full bg-pink-700 px-4 py-2 shadow-lg md:hidden">Your Library</button>
+      {libraryOpen && <div className="fixed inset-0 z-50 md:hidden">
+        <button aria-label="Close library" className="absolute inset-0 bg-black/70" onClick={()=>setLibraryOpen(false)}/>
+        <aside aria-label="Your Library" className="relative h-full w-[min(90vw,340px)] overflow-y-auto bg-neutral-900 pb-6">
+          <button className="m-4 rounded-full border border-neutral-600 px-4 py-2" onClick={()=>setLibraryOpen(false)}>Close library</button>
+          <Library songs={songs}/>
+        </aside>
+      </div>}
       <div
         className="
     flex
