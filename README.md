@@ -26,6 +26,7 @@ Demo Premium is included. Play official recordings, search, save favourites, and
 - MP3/WAV/OGG uploads, cover art, bounded file sizes, per-user folders and ownership rules.
 - Administrator catalog moderation with server authorization and database row-level security.
 - Stripe **test-mode only** recurring checkout, subscription webhooks, and customer portal. The server rejects live API keys and live events. No real money is charged.
+- Ten original Voib Sessions, playable without login through the bottom audio player. The main collection restores the earlier three studies and adds seven longer instrumentals.
 - 32 official YouTube recordings with genre browsing, artist/composer filters, and an Emraan Hashmi film collection. Bollywood, Pop & R&B, Ghazals, Alternative, and Pakistani pop are classified separately from artist credits.
 - Visible official YouTube playback with play/pause, seeking, queue navigation and volume controls. Public videos can play without a Voib login. No commercial audio is downloaded or rehosted; personal licensed uploads still use Supabase Storage.
 

@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-11-26T08:20:50.436467+00:00",
+  "verifiedAt": "2026-11-26T09:01:14.824556+00:00",
   "url": "https://voib-nilay.onrender.com",
-  "runtimeCommit": "be676e868620bbc38518a802a706a4cf6b9be746",
-  "renderDeploy": "dep-dc3umlk9v7es73dbk0gg",
+  "runtimeCommit": "2a5967e5da01329d2180dac3bc86a751f2a51924",
+  "renderDeploy": "dep-dc3v9bh5efls73cjie3g",
   "automatedApplicationChecks": {
-    "verifiedAt": "2026-11-26T03:00:48.076Z",
+    "verifiedAt": "2026-11-26T08:56:54.738Z",
     "url": "https://voib-nilay.onrender.com",
     "allPassed": true,
     "checks": [
@@ -41,7 +41,47 @@
         "pass": true
       },
       {
-        "name": "Generated placeholder recordings removed",
+        "name": "Voib Sessions are published as native audio",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Velvet Hours",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Afterglow",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Neon Drift",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Quiet Orbit",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Blue Hour",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Saffron Sky",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Paper Moon",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Midnight Drive",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Still Water",
+        "pass": true
+      },
+      {
+        "name": "Native audio serves byte ranges: Last Light",
         "pass": true
       },
       {
@@ -157,20 +197,23 @@
   },
   "databaseAccessChecks": "passed; transaction rolled back",
   "catalogue": {
-    "officialRecordings": 32,
-    "sourceMetadataVerified": 32,
-    "playback": "Official YouTube IFrame players; no commercial audio rehosted",
-    "oldGeneratedRecordings": "removed"
+    "nativeAudioRecordings": 10,
+    "restoredOriginalStudies": 3,
+    "newOriginalInstrumentals": 7,
+    "officialYouTubeRecordings": 32,
+    "mainFocus": "Voib Sessions with native audio playback",
+    "secondaryDiscovery": "Compact, initially collapsed official YouTube catalogue"
   },
   "browserChecks": [
-    "Desktop and 390x844 mobile layouts",
-    "Live Maahi playback with native video visible",
-    "Custom playback, seek, mute and volume controls",
-    "Ghazal and One Direction filters",
-    "Mobile navigation and library drawer",
-    "Demo sign-in, upload, favourites and saved-record queue",
-    "Private owner admin studio shows all 32 records",
-    "Final mobile sleeve caption clears artwork; no horizontal overflow; visible video viewport 356x201 px"
+    "Guest playback of Velvet Hours without sign-in",
+    "Native audio loaded with readyState 4; duration 72 seconds; playback advanced",
+    "Pause, next track to Afterglow, mouse seek to 17.7 seconds, mute",
+    "Native playback creates no YouTube iframe",
+    "Compact discovery disclosure opens and closes; Ghazals filter returns five recordings",
+    "Final desktop collection uses the shared page gutter",
+    "Final mobile width 390: ten track cards, 24px page gutter, no horizontal overflow",
+    "Persistent native bottom player remains visible on mobile",
+    "Official YouTube discovery is secondary and collapsed by default"
   ],
   "limitations": [
     "YouTube availability and autoplay depend on region and browser policy",

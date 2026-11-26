@@ -6,7 +6,7 @@ Voib is a music application for people who want a personal, unhurried place to l
 
 - Cormorant Garamond for expressive headings and record titles; Manrope for navigation, controls and readable detail. Fonts are self-hosted by Next.js.
 - Warm paper `#f3f0e8`, dark ink `#272c25`, quiet olive-grey `#6b7066`, and restrained brass `#987849`. Shared CSS variables in `app/globals.css` define the palette.
-- Official YouTube recording artwork, framed as a record collection. The forest-green, sienna and slate genre cards provide a coherent palette around varied cover imagery.
+- Original engraved-style vector sleeves for Voib Sessions, with official YouTube recording artwork in the secondary collection. The forest-green, sienna and slate genre cards provide a coherent palette around varied cover imagery.
 - Hairline rules, generous margins, offset record covers, and one tactile vinyl composition. No gradients behind generic cards, fabricated popularity metrics, or decorative controls that do nothing.
 
 ## Consistent behaviour
