@@ -3733,3 +3733,12 @@ body:has(.official-player-panel) .sessions-grid {
     grid-column: auto;
   }
 }
+.sessions-section {
+  margin-inline: var(--gutter);
+}
+.discovery-annex {
+  margin-inline: var(--gutter);
+}
+.discovery-annex .collection-section {
+  padding-inline: 0;
+}
